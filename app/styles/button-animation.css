@@ -1,0 +1,43 @@
+.animated-button {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 24px;
+  font-size: 18px;
+  color: rgb(230, 245, 255);
+  border: 2px solid rgb(190, 245, 88);
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden; /* prevent any children from spilling */
+}
+
+/* pseudo-element for hover blob */
+.animated-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  pointer-events: none; /* optional: prevents it from blocking clicks */
+}
+
+.animated-button:hover::before {
+  scale: 3;
+}
+
+.animated-button:hover {
+  color: #212121;
+  transform: scale(1.05); /* use transform instead of scale shorthand */
+  box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
+}
+
+.animated-button:active {
+  transform: scale(1);
+}

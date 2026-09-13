@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Instrument+Sans:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
+@import './styles/button-animation.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 0%;
+        --background-light: 0 0% 19%;
+        --foreground: 0 0% 87%;
+
+        --card: 0 0% 3.9%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 3.9%;
+        --popover-foreground: 0 0% 98%;
+
+        --primary: 140 100% 47%;
+        --primary-foreground: 0 0% 13%;
+        --secondary: 193 100% 47%;
+        --secondary-foreground: 0 0% 13%;
+        --muted: 0 0% 14.9%;
+        --muted-foreground: 0 0% 71%;
+        --accent: 0 0% 14.9%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 24%;
+        --input: 0 0% 14.9%;
+        --ring: 0 0% 83.1%;
+        --chart-1: 220 70% 50%;
+        --chart-2: 160 60% 45%;
+        --chart-3: 30 80% 55%;
+        --chart-4: 280 65% 60%;
+        --chart-5: 340 75% 55%;
+    }
+}
+
+@layer base {
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    * {
+        @apply border-border;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        background-image: url('/compare-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        cursor: url('/arrow cursor.png') 0 0, auto;
+        font-family: 'Instrument Sans', sans-serif;
+        scroll-snap-type: y proximity;
+    }
+
+    section {
+        position: relative;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        overflow: hidden;
+        isolation: isolate;
+        min-height: 100vh;
+    }
+
+    a,
+    button,
+    [role='button'],
+    .cursor-pointer,
+    input[type='button'],
+    input[type='submit'],
+    label[for] {
+        cursor: url('/hand cursor.png') 0 0, pointer;
+    }
+}
+
+@layer components {
+    .grid {
+        @apply gap-[25px];
+    }
+
+    .markdown-text ul {
+        @apply pl-5 mt-2 list-disc;
+    }
+
+    [data-parallax-bg],
+    [data-parallax-content] {
+        will-change: transform, opacity;
+    }
+
+    /*
+     * Desktop browsers that support view timelines keep this section in view.
+     * Forward scroll progress is retained by the skills component so cards do
+     * not reverse when the visitor scrolls back up. Smaller screens retain the
+     * natural stacked layout so every card remains easy to read.
+     */
+    @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+        @supports (view-timeline: --skills-content block) {
+            section.skills-section {
+                overflow: visible;
+            }
+
+            .skills-scroll-stage {
+                height: 400vh;
+                view-timeline: --skills-content block;
+            }
+
+            .skills-viewport {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+            }
+
+            .skills-layout {
+                height: 100%;
+            }
+
+            .skill-card {
+                opacity: var(--card-reveal, 0);
+                transform: translateY(
+                    calc((1 - var(--card-reveal, 0)) * 2.5rem)
+                );
+                transition: opacity 120ms ease-out, transform 120ms ease-out;
+            }
+        }
+    }
+}
