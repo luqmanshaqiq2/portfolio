@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import Image from 'next/image';
 import { useRef } from 'react';
 
 interface Props {
@@ -101,11 +102,22 @@ const ProjectDetails = ({ project }: Props) => {
                 >
                     <div className="relative w-full">
                         <div className="flex items-start gap-6 mx-auto mb-10 max-w-[635px]">
-                            <h1 className="fade-in-later opacity-0 text-4xl md:text-[60px] leading-none font-anton overflow-hidden">
-                                <span className="inline-block">
-                                    {project.title}
-                                </span>
-                            </h1>
+                            <div className="flex items-center gap-3">
+                                <h1 className="fade-in-later opacity-0 text-4xl md:text-[60px] leading-none font-anton overflow-hidden">
+                                    <span className="inline-block">
+                                        {project.title}
+                                    </span>
+                                </h1>
+                                {project.icon && (
+                                    <Image
+                                        src={project.icon}
+                                        alt=""
+                                        width={56}
+                                        height={56}
+                                        className="h-10 w-10 shrink-0 object-contain md:h-12 md:w-12"
+                                    />
+                                )}
+                            </div>
 
                             <div className="fade-in-later opacity-0 flex gap-2">
                                 {project.sourceCode && (

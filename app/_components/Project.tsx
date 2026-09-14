@@ -19,19 +19,6 @@ gsap.registerPlugin(useGSAP);
 const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
     const externalLinkSVGRef = useRef<SVGSVGElement>(null);
 
-    const cleanText = (value: string) =>
-        value
-            .replace(/<br\s*\/?>/g, ' ')
-            .replace(/<li>/g, ' • ')
-            .replace(/<\/li>/g, ' ')
-            .replace(/<ul>|<\/ul>|<p>|<\/p>|<strong>|<\/strong>|<b>|<\/b>/g, ' ')
-            .replace(/<[^>]+>/g, ' ')
-            .replace(/\s+/g, ' ')
-            .trim();
-
-    const description = cleanText(project.description);
-    const role = cleanText(project.role);
-
     const { context, contextSafe } = useGSAP(() => { }, {
         scope: externalLinkSVGRef,
         revertOnUpdate: true,
@@ -125,7 +112,18 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
                 </div>
                 <div className="min-w-0">
                     <h4 className="flex gap-2 sm:gap-4 font-anton text-3xl leading-tight xs:text-5xl sm:text-6xl transition-all duration-700 bg-gradient-to-r from-primary to-foreground from-[50%] to-[50%] bg-[length:200%] bg-right bg-clip-text text-transparent group-hover:bg-left">
-                        {project.title}
+                        <span className="flex items-center gap-2 sm:gap-4">
+                            <span>{project.title}</span>
+                            {project.icon && (
+                                <Image
+                                    src={project.icon}
+                                    alt=""
+                                    width={42}
+                                    height={42}
+                                    className="h-7 w-7 shrink-0 object-contain sm:h-9 sm:w-9"
+                                />
+                            )}
+                        </span>
                         <span className="inline-flex shrink-0 items-center text-foreground opacity-0 transition-all group-hover:opacity-100">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

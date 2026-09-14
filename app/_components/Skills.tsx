@@ -1,9 +1,11 @@
 'use client';
 
 import { MY_STACK } from '@/lib/data';
+import Image from 'next/image';
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import techImage from '../../public/tech.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -90,13 +92,13 @@ const Skills = () => {
 
         let lastScrollY = window.scrollY;
         let sectionCompleted = false;
+        let frameId: number | null = null;
 
         const updateCards = () => {
             const currentScrollY = window.scrollY;
             const scrollingDown = currentScrollY > lastScrollY;
 
             const rect = scrollStage.getBoundingClientRect();
-
             const sectionTop = rect.top + currentScrollY;
             const sectionBottom = sectionTop + scrollStage.offsetHeight;
 
@@ -157,17 +159,29 @@ const Skills = () => {
             lastScrollY = currentScrollY;
         };
 
-        window.addEventListener('scroll', updateCards, { passive: true });
+        const scheduleUpdate = () => {
+            if (frameId !== null) return;
+
+            frameId = requestAnimationFrame(() => {
+                frameId = null;
+                updateCards();
+            });
+        };
+
+        window.addEventListener('scroll', scheduleUpdate, { passive: true });
 
         return () => {
-            window.removeEventListener('scroll', updateCards);
+            window.removeEventListener('scroll', scheduleUpdate);
+            if (frameId !== null) {
+                cancelAnimationFrame(frameId);
+            }
         };
     }, []);
 
     return (
         <section
             id="my-stack"
-            className="skills-section mt-40 py-16 sm:py-24 lg:py-0"
+            className="skills-section mt-16 py-16 sm:mt-20 sm:py-24 lg:mt-24 lg:py-0"
         >
             <div ref={scrollStageRef} className="skills-scroll-stage content">
                 <div className="skills-viewport">
@@ -192,10 +206,14 @@ const Skills = () => {
                                 </h2>
                                 <span className='text-xs translate-y-1 text-muted-foreground'>*WORKING ON THIS SLOW MO SCROLL</span>
 
-                                <img
-                                    src="/tech.png"
+                                <Image
+                                    src={techImage}
                                     alt="Tech stack"
                                     className="mt-5 aspect-video w-full max-w-[580px] object-cover object-center"
+                                    width={580}
+                                    height={320}
+                                    priority={false}
+                                    loading="lazy"
                                 />
 
 
@@ -232,11 +250,13 @@ const Skills = () => {
                                                         className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background-light/40 transition-transform duration-300 hover:-translate-y-1 hover:border-muted-foreground"
                                                         title={item.name}
                                                     >
-                                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                        <img
+                                                        <Image
                                                             src={`https://cdn.simpleicons.org/${item.icon}`}
                                                             alt={item.name}
+                                                            width={24}
+                                                            height={24}
                                                             className="h-6 w-6 object-contain"
+                                                            unoptimized
                                                         />
 
                                                         <span className="sr-only">

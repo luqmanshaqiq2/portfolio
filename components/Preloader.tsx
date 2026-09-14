@@ -53,7 +53,7 @@ const Preloader = () => {
             <div className="preloader-item h-full w-[10%] bg-black"></div>
             <div className="preloader-item h-full w-[10%] bg-black"></div>
 
-            <p className="name-text flex text-[20vw] lg:text-[200px] font-anton text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 leading-none overflow-hidden">
+            <p className="name-text flex text-[clamp(4rem,18vw,12rem)] md:text-[clamp(6rem,13vw,11rem)] lg:text-[clamp(8rem,10vw,12rem)] font-anton text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 leading-none overflow-hidden">
                 <span className="inline-block translate-y-full">W</span>
                 <span className="inline-block translate-y-full">E</span>
                 <span className="inline-block translate-y-full">L</span>

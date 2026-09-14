@@ -6,7 +6,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import Image from 'next/image';
-import React, { useRef, useState, MouseEvent } from 'react';
+import React, { useRef, useState } from 'react';
 import Project from './Project';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -23,52 +23,63 @@ const ProjectList = () => {
     // update imageRef.current href based on the cursor hover position
     // also update image position
     useGSAP(
-        (context, contextSafe) => {
-            // show image on hover
+        () => {
             if (window.innerWidth < 768) {
                 setSelectedProject(null);
                 return;
             }
 
-            const handleMouseMove = contextSafe?.((e: MouseEvent) => {
-                if (!containerRef.current) return;
-                if (!imageContainer.current) return;
+            let frameId: number | null = null;
+
+            const handleMouseMove = (e: globalThis.MouseEvent) => {
+                if (!containerRef.current || !imageContainer.current) return;
 
                 if (window.innerWidth < 768) {
                     setSelectedProject(null);
                     return;
                 }
 
-                const containerRect =
-                    containerRef.current?.getBoundingClientRect();
-                const imageRect =
-                    imageContainer.current.getBoundingClientRect();
-                const offsetTop = e.clientY - containerRect.y;
+                if (frameId !== null) return;
 
-                // if cursor is outside the container, hide the image
-                if (
-                    containerRect.y > e.clientY ||
-                    containerRect.bottom < e.clientY ||
-                    containerRect.x > e.clientX ||
-                    containerRect.right < e.clientX
-                ) {
-                    return gsap.to(imageContainer.current, {
-                        duration: 0.3,
-                        opacity: 0,
+                frameId = requestAnimationFrame(() => {
+                    frameId = null;
+
+                    const containerRect =
+                        containerRef.current?.getBoundingClientRect();
+                    const imageRect =
+                        imageContainer.current!.getBoundingClientRect();
+                    const offsetTop = e.clientY - (containerRect?.y ?? 0);
+
+                    if (
+                        !containerRect ||
+                        containerRect.y > e.clientY ||
+                        containerRect.bottom < e.clientY ||
+                        containerRect.x > e.clientX ||
+                        containerRect.right < e.clientX
+                    ) {
+                        return gsap.to(imageContainer.current, {
+                            duration: 0.3,
+                            opacity: 0,
+                        });
+                    }
+
+                    gsap.to(imageContainer.current, {
+                        y: offsetTop - imageRect.height / 2,
+                        duration: 1,
+                        opacity: 1,
                     });
-                }
-
-                gsap.to(imageContainer.current, {
-                    y: offsetTop - imageRect.height / 2,
-                    duration: 1,
-                    opacity: 1,
                 });
-            }) as any;
+            };
 
-            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mousemove', handleMouseMove, {
+                passive: true,
+            });
 
             return () => {
                 window.removeEventListener('mousemove', handleMouseMove);
+                if (frameId !== null) {
+                    cancelAnimationFrame(frameId);
+                }
             };
         },
         { scope: containerRef, dependencies: [containerRef.current] },

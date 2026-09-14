@@ -35,8 +35,9 @@ export const MY_STACK = {
 
 export const PROJECTS: IProject[] = [
     {
-        title: 'Payroll System',
+        title: 'Payroll System ',
         slug: 'payroll-system',
+        icon: 'https://img.icons8.com/?size=100&id=50951&format=png&color=FFFFFF',
         liveUrl: '',
         year: 2025,
         description: `
@@ -79,6 +80,7 @@ export const PROJECTS: IProject[] = [
     {
         title: 'Pearl Lanka - Travel Advisory',
         slug: 'pearl-lanka',
+        icon: 'https://img.icons8.com/?size=100&id=17030&format=png&color=FFFFFF',
         techStack: [
             'React',
             '.NET',
@@ -113,6 +115,7 @@ export const PROJECTS: IProject[] = [
     {
         title: 'Cliniq API',
         slug: 'cliniq',
+        icon: 'https://img.icons8.com/?size=100&id=24761&format=png&color=FFFFFF',
         techStack: [
             'ASP.NET Core',
             'C#',
@@ -141,6 +144,7 @@ export const PROJECTS: IProject[] = [
     {
         title: 'API Privacy Wall',
         slug: 'api-privacy',
+        icon: 'https://img.icons8.com/?size=100&id=47390&format=png&color=FFFFFF',
         techStack: ['C#', '.NET'],
         thumbnail: '/projects/images/thumbnail/property-pro-1.png',
         longThumbnail: '/projects/images/thumbnail/property-pro-1.png',

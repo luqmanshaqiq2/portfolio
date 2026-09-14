@@ -1,8 +1,8 @@
 'use client';
-import { GENERAL_INFO } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
+import Image from 'next/image';
 import React from 'react';
 import logo from '../logo.png';
 
@@ -79,10 +79,13 @@ const Banner = () => {
                 aria-label="Logo"
                 onClick={(event) => event.preventDefault()}
             >
-                <img
-                    src={logo.src}
+                <Image
+                    src={logo}
                     alt="Logo"
                     className="h-14 w-14 object-contain"
+                    width={56}
+                    height={56}
+                    priority
                 />
             </a>
 
@@ -95,6 +98,7 @@ const Banner = () => {
                 data-parallax-content
             >
                 <div className="flex flex-col justify-center items-center max-w-[544px] text-center w-full">
+                    <h1 className='text-sm mb-5'>Hello there👋, I am</h1>
                     <h1 className="banner-title slide-up-and-fade leading-[.85]"> <span className="text-[15vw] sm:text-[12vw] md:text-9xl lg:text-15xl font-black text-white"> LUQMAN CASSIM </span> </h1>
                     <div className="resume-button-wrapper slide-up-and-fade mt-8 sm:mt-16 md:mt-20 lg:mt-5">
                         <button
@@ -113,8 +117,8 @@ const Banner = () => {
                             </span>
 
                             <span className="resume-button-inner">
-                                <span className="resume-button-inner-static">RESUME</span>
-                                <span className="resume-button-inner-hover">RESUME</span>
+                                <span className="resume-button-inner-static tracking-normal">my resume</span>
+                                <span className="resume-button-inner-hover">my resume?</span>
                             </span>
                         </button>
                     </div>

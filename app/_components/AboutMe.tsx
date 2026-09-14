@@ -493,7 +493,7 @@ const AboutMe = () => {
                 ".about-dock",
             ];
 
-            if (reduceMotion || isMobile) {
+            if (reduceMotion) {
                 gsap.set(animatedElements, {
                     autoAlpha: 1,
                     clearProps: "transform",
@@ -780,8 +780,8 @@ const AboutMe = () => {
                 </div>
 
                 {/* Education */}
-                <div className="about-fade relative mt-4 max-w-[245px] text-left sm:absolute sm:right-[15%] sm:left-auto sm:top-[18%] sm:max-w-[245px] sm:translate-x-0 sm:flex md:right-[15%] lg:right-[10%]">
-                    <div className="max-w-[245px]">
+                <div className="about-fade absolute left-5 bottom-[10%] z-20 max-w-[245px] text-left sm:left-auto sm:right-[15%] sm:top-[18%] sm:bottom-auto sm:max-w-[245px] sm:translate-x-0 md:right-[15%] lg:right-[10%]">
+                    <div className="max-w-[245px] translate-y-3 sm:translate-y-0">
                         <span className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-gradient-to-r from-white via-emerald-100 to-sky-300 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black shadow-[0_4px_14px_rgba(34,211,238,0.35)] ring-1 ring-white/70 backdrop-blur-sm">
                             <Image
                                 src="https://img.icons8.com/?size=100&id=21180&format=png&color=000000"
