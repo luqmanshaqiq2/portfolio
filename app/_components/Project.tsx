@@ -19,6 +19,19 @@ gsap.registerPlugin(useGSAP);
 const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
     const externalLinkSVGRef = useRef<SVGSVGElement>(null);
 
+    const cleanText = (value: string) =>
+        value
+            .replace(/<br\s*\/?>/g, ' ')
+            .replace(/<li>/g, ' • ')
+            .replace(/<\/li>/g, ' ')
+            .replace(/<ul>|<\/ul>|<p>|<\/p>|<strong>|<\/strong>|<b>|<\/b>/g, ' ')
+            .replace(/<[^>]+>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+
+    const description = cleanText(project.description);
+    const role = cleanText(project.role);
+
     const { context, contextSafe } = useGSAP(() => { }, {
         scope: externalLinkSVGRef,
         revertOnUpdate: true,
@@ -107,17 +120,17 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
                 />
             )}
             <div className="flex gap-2 md:gap-5">
-                <div className="font-anton text-muted-foreground">
+                <div className="font-anton text-muted-foreground text-sm sm:text-base md:text-lg">
                     _{(index + 1).toString().padStart(2, '0')}.
                 </div>
-                <div className="">
-                    <h4 className="text-4xl xs:text-6xl flex gap-4 font-anton transition-all duration-700 bg-gradient-to-r from-primary to-foreground from-[50%] to-[50%] bg-[length:200%] bg-right bg-clip-text text-transparent group-hover:bg-left">
+                <div className="min-w-0">
+                    <h4 className="flex gap-2 sm:gap-4 font-anton text-3xl leading-tight xs:text-5xl sm:text-6xl transition-all duration-700 bg-gradient-to-r from-primary to-foreground from-[50%] to-[50%] bg-[length:200%] bg-right bg-clip-text text-transparent group-hover:bg-left">
                         {project.title}
-                        <span className="text-foreground opacity-0 group-hover:opacity-100 transition-all">
+                        <span className="inline-flex shrink-0 items-center text-foreground opacity-0 transition-all group-hover:opacity-100">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="36"
-                                height="36"
+                                width="32"
+                                height="32"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -125,6 +138,7 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                                 ref={externalLinkSVGRef}
+                                className="sm:h-9 sm:w-9"
                             >
                                 <path
                                     id="box"
@@ -135,12 +149,12 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
                             </svg>
                         </span>
                     </h4>
-                    <div className="mt-2 flex flex-wrap gap-3 text-muted-foreground text-xs">
+                    <div className="mt-2 flex flex-wrap gap-3 text-muted-foreground text-[10px] sm:text-xs">
                         {project.techStack
                             .slice(0, 3)
                             .map((tech, idx, stackArr) => (
                                 <div
-                                    className="gap-3 flex items-center"
+                                    className="flex items-center gap-3"
                                     key={tech}
                                 >
                                     <span className="">{tech}</span>

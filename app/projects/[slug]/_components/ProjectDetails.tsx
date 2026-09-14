@@ -1,6 +1,5 @@
 'use client';
 import parse from 'html-react-parser';
-import ArrowAnimation from '@/components/ArrowAnimation';
 import TransitionLink from '@/components/TransitionLink';
 import { IProject } from '@/types';
 import { useGSAP } from '@gsap/react';
@@ -142,7 +141,7 @@ const ProjectDetails = ({ project }: Props) => {
                             </div>
                             <div className="fade-in-later">
                                 <p className="text-muted-foreground font-anton mb-3">
-                                    Tech & Technique
+                                    Language & Frameworks
                                 </p>
 
                                 <div className="text-lg">
@@ -164,42 +163,19 @@ const ProjectDetails = ({ project }: Props) => {
                                         My Role
                                     </p>
 
-                                    <div className="text-lg">
-                                        {parse(project.role)}
+                                    <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-6 shadow-[0_16px_42px_rgba(0,0,0,0.24)] backdrop-blur-xl backdrop-saturate-150">
+                                        <div className="text-lg leading-8 text-foreground/85">
+                                            {parse(project.role)}
+                                        </div>
                                     </div>
+
+                                    <div className="mt-14" aria-hidden="true" />
                                 </div>
                             )}
                         </div>
-
-                        <ArrowAnimation />
                     </div>
                 </div>
 
-                <div
-                    className="fade-in-later relative flex flex-col gap-2 max-w-[800px] mx-auto"
-                    id="images"
-                >
-                    {project.images.map((image: string) => (
-                        <div
-                            key={image}
-                            className="group relative w-full aspect-[750/400] bg-background-light"
-                            style={{
-                                backgroundImage: `url(${image})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center 50%',
-                                backgroundRepeat: 'no-repeat',
-                            }}
-                        >
-                            <a
-                                href={image}
-                                target="_blank"
-                                className="absolute top-4 right-4 bg-background/70 text-foreground size-12 inline-flex justify-center items-center transition-all opacity-0 hover:bg-primary hover:text-primary-foreground group-hover:opacity-100"
-                            >
-                                <ExternalLink />
-                            </a>
-                        </div>
-                    ))}
-                </div>
             </div>
         </section>
     );

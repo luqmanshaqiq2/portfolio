@@ -225,7 +225,7 @@ const Skills = () => {
                                                     : key}
                                             </h3>
 
-                                            <div className="mt-6 grid w-fit grid-cols-2 gap-4 sm:gap-5">
+                                            <div className="mt-6 flex w-fit max-w-full flex-wrap items-center gap-3 sm:gap-4 lg:gap-5">
                                                 {tools.map((item) => (
                                                     <div
                                                         key={item.name}

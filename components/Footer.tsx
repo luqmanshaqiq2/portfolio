@@ -1,7 +1,7 @@
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 
 const socialLinks = [
-    { name: "LinkedIn", href: "https://www.linkedin.com/in/luqman-cassim/", icon: Linkedin },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/luqmancassim/", icon: Linkedin },
     { name: "GitHub", href: "https://github.com/luqmanshaqiq2", icon: Github },
     { name: "Email", href: "mailto:luqmanshaqiq2@gmail.com", icon: Mail },
 ];

@@ -34,7 +34,7 @@ const Experiences = () => {
     );
 
     return (
-        <section className="py-section" id="my-experience">
+        <section className="py-section px-4 sm:px-6 md:px-8" id="my-experience">
             <div
                 className="container"
                 ref={containerRef}
@@ -42,18 +42,18 @@ const Experiences = () => {
             >
                 <SectionTitle title="My Experience" />
 
-                <div className="grid gap-14">
+                <div className="grid gap-8 sm:gap-10 md:gap-14">
                     {MY_EXPERIENCE.map((item) => (
                         <div
                             key={item.title}
-                            className="experience-item"
+                            className="experience-item py-4 sm:py-6 md:py-8"
                         >
-                            <p className="text-xl text-muted-foreground">
+                            <p className="text-sm sm:text-base md:text-xl leading-relaxed text-muted-foreground">
                                 {item.company}
                             </p>
 
-                            <div className="mt-3.5 mb-2.5 flex items-center gap-6">
-                                <p className="text-5xl font-anton leading-none">
+                            <div className="mt-3.5 mb-2.5 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
+                                <p className="max-w-full text-4xl font-anton leading-none break-words sm:text-5xl md:text-6xl">
                                     {item.title}
                                 </p>
 
@@ -64,11 +64,11 @@ const Experiences = () => {
                                     muted
                                     playsInline
                                     preload="metadata"
-                                    className="h-16 w-24 rounded-lg object-cover"
+                                    className="h-14 w-20 rounded-lg object-cover sm:h-16 sm:w-24 md:h-20 md:w-28"
                                 />
                             </div>
 
-                            <p className="text-lg text-muted-foreground">
+                            <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg">
                                 {item.duration}
                             </p>
                         </div>

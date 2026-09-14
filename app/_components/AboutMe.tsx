@@ -465,8 +465,17 @@ const AboutMe = () => {
     // -------------------------------------------------
 
     useLayoutEffect(() => {
-        const modelDraggable = createDraggable(".about-model");
-        let modelEntrance: gsap.core.Tween | undefined;
+        const aboutSection = rootRef.current;
+        if (!aboutSection) return;
+
+        const isMobile = window.matchMedia('(max-width: 640px)').matches;
+
+        const modelDraggable = isMobile
+            ? null
+            : createDraggable(".about-model", {
+                container: aboutSection,
+                containerPadding: 16,
+            });
 
         const context = gsap.context(() => {
             const reduceMotion = window.matchMedia(
@@ -484,10 +493,17 @@ const AboutMe = () => {
                 ".about-dock",
             ];
 
-            if (reduceMotion) {
+            if (reduceMotion || isMobile) {
                 gsap.set(animatedElements, {
                     autoAlpha: 1,
                     clearProps: "transform",
+                });
+
+                gsap.set(".about-model", {
+                    autoAlpha: 1,
+                    scale: 1,
+                    y: 0,
+                    filter: "blur(0px)",
                 });
 
                 setHasEnteredViewport(true);
@@ -503,7 +519,7 @@ const AboutMe = () => {
             });
 
             // Keep the ID-card reveal independent from the content timeline.
-            modelEntrance = gsap.fromTo(
+            gsap.fromTo(
                 ".about-model",
                 {
                     autoAlpha: 0,
@@ -653,30 +669,8 @@ const AboutMe = () => {
 
         }, rootRef);
 
-        modelDraggable.onRelease = () => {
-            const sectionBounds = rootRef.current?.getBoundingClientRect();
-            const modelElement = document.querySelector<HTMLElement>(
-                ".about-model"
-            );
-            const cardBounds = modelElement?.getBoundingClientRect();
-
-            if (!sectionBounds || !cardBounds || !modelEntrance) return;
-
-            const isOutsideSection =
-                cardBounds.right < sectionBounds.left ||
-                cardBounds.left > sectionBounds.right ||
-                cardBounds.bottom < sectionBounds.top ||
-                cardBounds.top > sectionBounds.bottom;
-
-            if (!isOutsideSection) return;
-
-            modelDraggable.setX(0, true);
-            modelDraggable.setY(0, true);
-            modelEntrance.restart();
-        };
-
         return () => {
-            modelDraggable.revert();
+            modelDraggable?.revert();
             context.revert();
         };
     }, []);
@@ -765,15 +759,15 @@ const AboutMe = () => {
                 </h2>
 
                 {/* Left Text + Cube */}
-                <div className="about-fade absolute left-5 top-[40%] hidden max-w-[285px] items-start gap-4 sm:left-9 sm:flex md:left-12 lg:left-16">
+                <div className="about-fade relative mt-8 max-w-[min(420px,calc(100vw-2.5rem))] items-start gap-4 sm:absolute sm:left-9 sm:top-[40%] sm:max-w-[285px] sm:flex md:left-12 lg:left-16">
                     <Image
                         src={cubeImage}
                         alt=""
                         aria-hidden="true"
-                        className="about-cube mt-1 h-auto w-10 shrink-0"
+                        className="about-cube mt-1 mr-3 h-auto w-8 shrink-0 float-left sm:float-none sm:w-10"
                     />
 
-                    <p className="w-80 pl-5 text-justify text-sm leading-relaxed tracking-[0.03em] text-white/80">
+                    <p className="w-full pl-0 text-justify text-xs leading-relaxed tracking-[0.03em] text-white/80 sm:w-80 sm:pl-5 sm:text-sm">
                         My journey started from child-like curiosity to learn about how real-world software
                         actually behave and connect with one-another.
 
@@ -786,23 +780,17 @@ const AboutMe = () => {
                 </div>
 
                 {/* Education */}
-                <div className="about-fade absolute right-[15%] top-[18%] hidden max-w-[245px] items-start gap-4 sm:right-[15%] sm:flex md:right-[15%] lg:right-[10%]">
+                <div className="about-fade relative mt-4 max-w-[245px] text-left sm:absolute sm:right-[15%] sm:left-auto sm:top-[18%] sm:max-w-[245px] sm:translate-x-0 sm:flex md:right-[15%] lg:right-[10%]">
                     <div className="max-w-[245px]">
-                        <span className="inline-flex items-center gap-2 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black">
-                            <svg
-                                className="h-3.5 w-5"
-                                viewBox="0 0 24 24"
-                                fill="none"
+                        <span className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-gradient-to-r from-white via-emerald-100 to-sky-300 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black shadow-[0_4px_14px_rgba(34,211,238,0.35)] ring-1 ring-white/70 backdrop-blur-sm">
+                            <Image
+                                src="https://img.icons8.com/?size=100&id=21180&format=png&color=000000"
+                                alt=""
                                 aria-hidden="true"
-                            >
-                                <path
-                                    d="M4 6.5 12 3l8 3.5-8 3L4 6.5Zm2.5 4.6V16L12 19l5.5-3v-4.9M12 10v9"
-                                    stroke="currentColor"
-                                    strokeWidth="1.7"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                                width={18}
+                                height={18}
+                                className="h-3.5 w-5 object-contain"
+                            />
 
                             Education
                         </span>

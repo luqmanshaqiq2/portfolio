@@ -3,12 +3,35 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useRef } from 'react';
+import { DotLottie } from '@lottiefiles/dotlottie-web';
+import { useEffect, useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function Template({ children }: { children: React.ReactNode }) {
     const pageRef = useRef<HTMLDivElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    useEffect(() => {
+        if (!canvasRef.current) {
+            return undefined;
+        }
+
+        const player = new DotLottie({
+            autoplay: true,
+            loop: true,
+            canvas: canvasRef.current,
+            src: '/loading.lottie',
+            renderConfig: {
+                autoResize: true,
+                freezeOnOffscreen: false,
+            },
+        });
+
+        return () => {
+            player.destroy();
+        };
+    }, []);
 
     useGSAP(() => {
         const tl = gsap.timeline();
@@ -85,8 +108,12 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
     return (
         <div ref={pageRef}>
-            <div className="page-transition w-screen h-screen fixed top-0 left-0 bg-background-light z-[5]">
-                <div className="page-transition--inner w-screen h-screen fixed top-0 left-0 bg-primary z-[5] translate-y-full"></div>
+            <div className="page-transition w-screen h-screen fixed top-0 left-0 bg-white z-[5]">
+                <div className="page-transition--inner w-screen h-screen fixed top-0 left-0 bg-white z-[5] translate-y-full"></div>
+                <canvas
+                    ref={canvasRef}
+                    className="absolute left-1/2 top-1/2 z-[6] h-48 w-48 -translate-x-1/2 -translate-y-1/2"
+                />
             </div>
 
             {children}
