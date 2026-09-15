@@ -103,7 +103,7 @@ const Banner = () => {
                     <div className="resume-button-wrapper slide-up-and-fade mt-8 sm:mt-16 md:mt-20 lg:mt-5">
                         <button
                             className="resume-button resume-button-item animated-button banner-button sm:w-[160px] sm:h-[55px] md:w-[180px] md:h-[60px] lg:w-[200px] lg:h-[65px]"
-                            onClick={() => window.open('/resume.pdf', '_blank')}
+                            onClick={() => window.open('/luqman-cassim-cv.pdf', '_blank')}
                             aria-label="Open Resume"
                         >
                             <span className="resume-button-bg" aria-hidden="true">

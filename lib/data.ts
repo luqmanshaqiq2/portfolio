@@ -38,6 +38,7 @@ export const PROJECTS: IProject[] = [
         title: 'Payroll System ',
         slug: 'payroll-system',
         icon: 'https://img.icons8.com/?size=100&id=50951&format=png&color=FFFFFF',
+        sourceCode: 'https://github.com/luqmanshaqiq2/payroll-management-system',
         liveUrl: '',
         year: 2025,
         description: `
@@ -73,14 +74,15 @@ export const PROJECTS: IProject[] = [
       </ul>
       `,
         techStack: ['React.js', 'MySQL', 'Express.js'],
-        thumbnail: '/projects/images/thumbnail/paypoint_payroll.png',
-        longThumbnail: '/projects/images/thumbnail/paypoint_payroll.png',
-        images: ['/projects/images/paypoint-system-1.png'],
+        thumbnail: '/projects/payroll-system/thumbnail.png',
+        longThumbnail: '/projects/payroll-system/thumbnail.png',
+        images: ['/projects/payroll-system/thumbnail.png'],
     },
     {
-        title: 'Pearl Lanka - Travel Advisory',
+        title: 'Travel Advisory Web App',
         slug: 'pearl-lanka',
         icon: 'https://img.icons8.com/?size=100&id=17030&format=png&color=FFFFFF',
+        sourceCode: 'https://github.com/luqmanshaqiq2/pearl-lanka-travel-advisory',
         techStack: [
             'React',
             '.NET',
@@ -89,11 +91,11 @@ export const PROJECTS: IProject[] = [
             'Tailwind CSS',
             'JSON',
         ],
-        thumbnail: '/projects/images/thumbnail/travel-advisory1.png',
-        longThumbnail: '/projects/images/thumbnail/travel-advisory1.png',
+        thumbnail: '/projects/pearl-lanka/thumbnail.png',
+        longThumbnail: '/projects/pearl-lanka/thumbnail.png',
         images: [
-            '/projects/images/travel-advisory1.png',
-            '/projects/images/travel-advisory2.png',
+            '/projects/pearl-lanka/thumbnail.png',
+            '/projects/pearl-lanka/image-02.png',
         ],
         liveUrl: '',
         year: 2025,
@@ -116,6 +118,7 @@ export const PROJECTS: IProject[] = [
         title: 'Cliniq API',
         slug: 'cliniq',
         icon: 'https://img.icons8.com/?size=100&id=24761&format=png&color=FFFFFF',
+        sourceCode: 'https://github.com/luqmanshaqiq2/cliniq',
         techStack: [
             'ASP.NET Core',
             'C#',
@@ -123,9 +126,9 @@ export const PROJECTS: IProject[] = [
             'Entity Framework Core',
             'Redis',
         ],
-        thumbnail: '/projects/images/thumbnail/cliniq.png',
-        longThumbnail: '/projects/images/thumbnail/cliniq.png',
-        images: ['/projects/images/cliniq.png'],
+        thumbnail: '/projects/cliniq/thumbnail.png',
+        longThumbnail: '/projects/cliniq/thumbnail.png',
+        images: ['/projects/cliniq/thumbnail.png'],
         liveUrl: '',
         year: 2026,
         description:
@@ -146,13 +149,9 @@ export const PROJECTS: IProject[] = [
         slug: 'api-privacy',
         icon: 'https://img.icons8.com/?size=100&id=47390&format=png&color=FFFFFF',
         techStack: ['C#', '.NET'],
-        thumbnail: '/projects/images/thumbnail/property-pro-1.png',
-        longThumbnail: '/projects/images/thumbnail/property-pro-1.png',
-        images: [
-            '/projects/images/property-pro-1.png',
-            '/projects/images/property-pro-2.png',
-            '/projects/images/property-pro-3.png',
-        ],
+        thumbnail: '/projects/api-privacy-wall/thumbnail.png',
+        longThumbnail: '/projects/api-privacy-wall/thumbnail.png',
+        images: ['/projects/api-privacy-wall/thumbnail.png'],
         year: 2026,
         description:
             'exploring how APIs can act as a controlled privacy boundary between clients and internal application data.',
@@ -171,11 +170,11 @@ export const PROJECTS: IProject[] = [
 
 export const MY_BLOGS = [
     {
-        title: 'How to Build High End Non-AI Slop Projects',
+        title: 'How to Build High Quality Projects Using AI',
         slug: 'systems-ai',
         category: 'Artificial Intelligence',
         excerpt:
-            'A practical guide to building polished, high-quality software projects that solve real problems instead of relying on generic AI-generated output.',
+            'A practical cost effective guide for students to build polished, high-quality software projects that solve real problems instead of relying on generic AI-generated output.',
         link: 'https://luqman-highend-projects-ai.blogspot.com/2026/09/how-to-build-high-quality-projects.html',
     },
     {
@@ -192,10 +191,6 @@ export const MY_EXPERIENCE = [
         title: 'UI/UX Designer',
         company: 'Freelance',
         duration: 'May 2025 - Present',
-    },
-    {
-        title: 'Open Source Contributer',
-        company: 'Github',
-        duration: 'Dec 2024 - Present',
+        link: 'https://www.figma.com/design/dJJhh7MziT6lCV69FmyCb5/my_projects?node-id=0-1&t=sFOmSkBZOxgl7ppN-1',
     },
 ];

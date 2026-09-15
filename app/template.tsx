@@ -108,8 +108,8 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
     return (
         <div ref={pageRef}>
-            <div className="page-transition w-screen h-screen fixed top-0 left-0 bg-white z-[5]">
-                <div className="page-transition--inner w-screen h-screen fixed top-0 left-0 bg-white z-[5] translate-y-full"></div>
+            <div className="page-transition w-screen h-screen fixed top-0 left-0 bg-[#080808] z-[5]">
+                <div className="page-transition--inner w-screen h-screen fixed top-0 left-0 bg-[#080808] z-[5] translate-y-full"></div>
                 <canvas
                     ref={canvasRef}
                     className="absolute left-1/2 top-1/2 z-[6] h-48 w-48 -translate-x-1/2 -translate-y-1/2"

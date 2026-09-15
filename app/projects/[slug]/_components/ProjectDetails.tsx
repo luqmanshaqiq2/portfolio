@@ -5,7 +5,7 @@ import { IProject } from '@/types';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import { useRef } from 'react';
 
@@ -85,8 +85,9 @@ const ProjectDetails = ({ project }: Props) => {
     );
 
     return (
-        <section className="pt-5 pb-14">
-            <div className="container" ref={containerRef}>
+        <section className="relative isolate overflow-hidden bg-[url('/bg.jpg')] bg-cover bg-center bg-fixed pt-5 pb-14">
+            <div aria-hidden="true" className="absolute inset-0 bg-black/20" />
+            <div className="container relative z-10" ref={containerRef}>
                 <TransitionLink
                     back
                     href="/"
@@ -120,16 +121,6 @@ const ProjectDetails = ({ project }: Props) => {
                             </div>
 
                             <div className="fade-in-later opacity-0 flex gap-2">
-                                {project.sourceCode && (
-                                    <a
-                                        href={project.sourceCode}
-                                        target="_blank"
-                                        rel="noreferrer noopener"
-                                        className="hover:text-primary"
-                                    >
-                                        <Github size={30} />
-                                    </a>
-                                )}
                                 {project.liveUrl && (
                                     <a
                                         href={project.liveUrl}
@@ -151,6 +142,22 @@ const ProjectDetails = ({ project }: Props) => {
 
                                 <div className="text-lg">{project.year}</div>
                             </div>
+                            {project.sourceCode && (
+                                <div className="fade-in-later">
+                                    <p className="text-muted-foreground font-anton mb-3">
+                                        Link
+                                    </p>
+
+                                    <a
+                                        href={project.sourceCode}
+                                        target="_blank"
+                                        rel="noreferrer noopener"
+                                        className="text-lg text-primary underline decoration-primary/50 underline-offset-4 transition hover:text-white hover:decoration-white"
+                                    >
+                                        {project.sourceCode}
+                                    </a>
+                                </div>
+                            )}
                             <div className="fade-in-later">
                                 <p className="text-muted-foreground font-anton mb-3">
                                     Language & Frameworks

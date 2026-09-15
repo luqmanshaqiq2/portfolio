@@ -54,7 +54,6 @@
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        cursor: url('/arrow cursor.png') 0 0, auto;
         font-family: 'Instrument Sans', sans-serif;
         scroll-snap-type: y proximity;
     }
@@ -75,7 +74,7 @@
     input[type='button'],
     input[type='submit'],
     label[for] {
-        cursor: url('/hand cursor.png') 0 0, pointer;
+        cursor: pointer;
     }
 }
 

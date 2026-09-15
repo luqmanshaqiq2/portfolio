@@ -53,9 +53,21 @@ const Experiences = () => {
                             </p>
 
                             <div className="mt-3.5 mb-2.5 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
-                                <p className="max-w-full text-4xl font-anton leading-none break-words sm:text-5xl md:text-6xl">
-                                    {item.title}
-                                </p>
+                                {item.link ? (
+                                    <a
+                                        href={item.link}
+                                        target="_blank"
+                                        rel="noreferrer noopener"
+                                        className="max-w-full text-4xl font-anton leading-none break-words transition-colors hover:text-primary sm:text-5xl md:text-6xl"
+                                        aria-label={`Open ${item.title} work in a new tab`}
+                                    >
+                                        {item.title}
+                                    </a>
+                                ) : (
+                                    <p className="max-w-full text-4xl font-anton leading-none break-words sm:text-5xl md:text-6xl">
+                                        {item.title}
+                                    </p>
+                                )}
 
                                 <video
                                     src="/spongebob.mp4"
