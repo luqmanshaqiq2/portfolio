@@ -175,7 +175,7 @@ export const MY_BLOGS = [
         category: 'Artificial Intelligence',
         excerpt:
             'A practical cost effective guide for students to build polished, high-quality software projects that solve real problems instead of relying on generic AI-generated output.',
-        link: 'https://luqman-highend-projects-ai.blogspot.com/2026/09/how-to-build-high-quality-projects.html',
+        link: 'https://luka8080.blogspot.com/2026/09/how-to-build-high-quality-projects-with-ai.html',
     },
     {
         title: 'Cloud Native Development',
