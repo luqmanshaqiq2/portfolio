@@ -118,7 +118,7 @@ const Banner = () => {
 
                             <span className="resume-button-inner">
                                 <span className="resume-button-inner-static tracking-normal">my resume</span>
-                                <span className="resume-button-inner-hover">my resume?</span>
+                                <span className="resume-button-inner-hover">my resume →</span>
                             </span>
                         </button>
                     </div>
