@@ -145,8 +145,8 @@ export const PROJECTS: IProject[] = [
       `,
     },
     {
-        title: 'API Privacy Wall',
-        slug: 'api-privacy',
+        title: 'Redactor(In Progress)',
+        slug: 'api-mcp-privacy',
         icon: 'https://img.icons8.com/?size=100&id=47390&format=png&color=FFFFFF',
         techStack: ['C#', '.NET'],
         thumbnail: '/projects/api-privacy-wall/thumbnail.png',
@@ -154,17 +154,17 @@ export const PROJECTS: IProject[] = [
         images: ['/projects/api-privacy-wall/thumbnail.png'],
         year: 2026,
         description:
-            'exploring how APIs can act as a controlled privacy boundary between clients and internal application data.',
-        role: `
-      Backend-Developer <br/>
-      Contributed across the server side lifecycle:
-      <ul>
-        <li>🛡️ Privacy: Implemented a custom ASP.NET Core middleware to act as a privacy boundary for API requests and responses.</li>
-        <li>📦 DTOs: Used pure record type DTOs to control what data crosses the API boundary.</li>
-        <li>🔐 Security: Added validation and authorization to protect endpoints.</li>
-        <li>👓 Design: Considered security, data exposure, and failure points when designing the request flow.</li>
-      </ul>
-      `,
+  `DTOs are the first line of defense for what an API exposes, but they're static and applied by hand. Redactor adds a policy layer behind them that decides which sensitive fields cross a boundary and in what form: redacted, tokenized, or scoped.`,
+role: `
+  Backend-Developer <br/>
+  Designed and built a reusable privacy library for .NET including test API endpoints:
+  <ul>
+    <li>🛡️ Policy layer: Built a rule-based engine that redacts, tokenizes, or scopes sensitive fields before data leaves an application.</li>
+    <li>📦 Library design: Structured it as a class library with optional ASP.NET Core middleware and MCP adapters, so it plugs into existing projects instead of being called over the network.</li>
+    <li>🔐 Data minimization: Applied per-destination rules so third-party APIs and LLM/MCP tool calls only receive the fields they need.</li>
+    <li>👓 Demo API: Built an ASP.NET Core Web API showing DTOs as the first layer and Redactor enforcing policy behind them.</li>
+  </ul>
+`,
     },
 ];
 
