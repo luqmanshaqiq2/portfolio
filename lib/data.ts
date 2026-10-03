@@ -157,13 +157,8 @@ export const PROJECTS: IProject[] = [
   `DTOs are the first line of defense for what an API exposes, but they're static and applied by hand. Redactor adds a policy layer behind them that decides which sensitive fields cross a boundary and in what form: redacted, tokenized, or scoped.`,
 role: `
   Backend-Developer <br/>
-  Designed and built a reusable privacy library for .NET including test API endpoints:
-  <ul>
-    <li>🛡️ Policy layer: Built a rule-based engine that redacts, tokenizes, or scopes sensitive fields before data leaves an application.</li>
-    <li>📦 Library design: Structured it as a class library with optional ASP.NET Core middleware and MCP adapters, so it plugs into existing projects instead of being called over the network.</li>
-    <li>🔐 Data minimization: Applied per-destination rules so third-party APIs and LLM/MCP tool calls only receive the fields they need.</li>
-    <li>👓 Demo API: Built an ASP.NET Core Web API showing DTOs as the first layer and Redactor enforcing policy behind them.</li>
-  </ul>
+  Designing a reusable privacy library including test API endpoints:
+  
 `,
     },
 ];
