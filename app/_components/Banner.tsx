@@ -94,7 +94,7 @@ const Banner = () => {
                     </h1>
                     <div className="resume-button-wrapper slide-up-and-fade mt-8 sm:mt-16 md:mt-20 lg:mt-5">
                         <a
-                            href="/luqman-cassim-cv.pdf"
+                            href="/Luqman Cassim CV.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="resume-button resume-button-item animated-button banner-button sm:w-[160px] sm:h-[55px] md:w-[180px] md:h-[60px] lg:w-[200px] lg:h-[65px]"
