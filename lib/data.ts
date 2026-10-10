@@ -177,7 +177,7 @@ export const MY_BLOGS = [
         slug: 'career',
         category: 'Career',
         excerpt: 'drafting.',
-        link: 'unavailable',
+        link: 'https://luka8080.blogspot.com/2026/10/a-beginner-guide-to-cloud-computing.html',
     },
 ];
 
